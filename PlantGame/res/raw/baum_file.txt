@@ -1,9 +1,0 @@
-Grau-Erle:Alnus incana;
-Hänge-Birke:Betula pendula;
-Schwarz-Birke:Betula nigra;
-Himalaya-Birke:Betula utilis;
-Waldkiefer:Pinus sylvestris;
-Zitter-Pappel:Populus tremula;
-Gewöhnliche Robinie:Robinia pseudoacacia;
-Sal-Weide:Salix caprea;
-Vogelbeere:Sorbus aucuparia;
