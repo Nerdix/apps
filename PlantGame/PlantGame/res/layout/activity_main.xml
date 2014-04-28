@@ -1,0 +1,121 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="playground.plantgame.MainActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/plantView"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center|top"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="66dp"
+            android:scaleType="fitCenter" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            android:gravity="center" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+
+                <EditText
+                    android:id="@+id/editText_bot"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ems="10" />
+
+                <EditText
+                    android:id="@+id/Edit_ger"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ems="10" >
+
+                    <requestFocus />
+                </EditText>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:id="@+id/name_bot"
+                    android:layout_width="140dp"
+                    android:layout_height="60dp"
+                    android:gravity="center_horizontal"
+                    android:text="Name botanisch" />
+
+                <TextView
+                    android:id="@+id/name_ger"
+                    android:layout_width="140dp"
+                    android:layout_height="60dp"
+                    android:gravity="center_horizontal"
+                    android:text="Name deutsch" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+
+                <Button
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="22dp"
+                    android:onClick="ButtonOnClick"
+                    android:text="zurück" />
+
+                <Button
+                    android:id="@+id/forward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="ButtonOnClick"
+                    android:text="weiter" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+
+                <Button
+                    android:id="@+id/check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="ButtonOnClick"
+                    android:text="Ok?" />
+
+                <Button
+                    android:id="@+id/start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="ButtonOnClick"
+                    android:text="Start" />
+            </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
+
+</FrameLayout>
