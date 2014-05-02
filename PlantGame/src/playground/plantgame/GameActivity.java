@@ -3,13 +3,11 @@ package playground.plantgame;
 import java.io.InputStream;
 
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.content.Context;
-import android.content.res.Resources;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,12 +19,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.os.Build;
 
-public class MainActivity extends ActionBarActivity {
+
+public class GameActivity extends ActionBarActivity {
 
 	private GameManager gm;
-	Button start;
+
 	Button back;
 	Button forward;
 	TextView name_bot;
@@ -48,7 +46,6 @@ public class MainActivity extends ActionBarActivity {
 		sound_pos = soundPool.load(this, R.raw.applause, 1);
 		gm = new GameManager(ctx);
 
-		start = (Button) findViewById(R.id.start);
 		forward = (Button) findViewById(R.id.forward);
 		back = (Button) findViewById(R.id.back);
 		name_bot = (TextView) findViewById(R.id.name_bot);
@@ -56,15 +53,17 @@ public class MainActivity extends ActionBarActivity {
 		input_bot = (EditText) findViewById(R.id.editText_bot);
 		input_ger = (EditText) findViewById(R.id.Edit_ger);
 		plant = (ImageView) findViewById(R.id.plantView);
-
+		
+		Intent intent = getIntent();
+		int nr = intent.getIntExtra("nr_plants", 0);
+		
+		QuestionObj obj = gm.startRandomGame(nr);
+		checkOkj(obj);
 	}
 
 	public void ButtonOnClick(View v) {
 		QuestionObj obj = null;
 		switch (v.getId()) {
-		case R.id.start:
-			obj = gm.startRandomGame(9);
-			break;
 		case R.id.forward:
 			obj = gm.getNextQuestion();
 			break;
@@ -75,38 +74,40 @@ public class MainActivity extends ActionBarActivity {
 			check();
 			break;
 		}
-		if (obj != null) {
-			InputStream is = getClass().getResourceAsStream(
-					"/res/drawable-hdpi/" + obj.getPic_link());
-			plant.setImageDrawable(Drawable.createFromStream(is, ""));
-			clearFields();
-		}
+		checkOkj(obj);
 	}
 
 	private void check() {
-		String res = gm.check_bot(input_bot.getText().toString());
-		gm.setAnswered(true);
-		if (res.equals("")) {
-			// correct
+		String res_bot = gm.check_bot(input_bot.getText().toString());
+		String res_ger = gm.check_german(input_ger.getText().toString());
+		
+		if (res_bot.equals("")) {
+			// botanic correct
 			name_bot.setText("Richtig");
-			soundPool.play(sound_pos, 1.0f, 1.0f, 0, 0, 1.0f);
+			gm.setLastResult_bot(true);
 			
 		} else {
-			// incorrect
-			name_bot.setText("FALSCH! " + res);
-			 soundPool.play(sound_false, 1.0f, 1.0f, 0, 0, 1.0f);
+			// botanic incorrect
+			name_bot.setText("FALSCH! " + res_bot);
+			gm.setLastResult_bot(false);
 		}
-		res = gm.check_german(input_ger.getText().toString());
-
-		if (res.equals("")) {
-			// correct
+		if (res_ger.equals("")) {
+			// german correct
 			name_ger.setText("Richtig");
-			soundPool.play(sound_pos, 1.0f, 1.0f, 0, 0, 1.0f);
+			gm.setLastResult_ger(true);
 		} else {
-			// incorrect
-			name_ger.setText("FALSCH! " + res);
+			//german incorrect
+			name_ger.setText("FALSCH! " + res_ger);
+			gm.setLastResult_ger(false);
+		}
+		//do sound
+		if(res_bot.equals("") && (res_ger.equals(""))){
+			soundPool.play(sound_pos, 1.0f, 1.0f, 0, 0, 1.0f);	
+
+		}else{
 			soundPool.play(sound_false, 1.0f, 1.0f, 0, 0, 1.0f);
 		}
+		gm.setAnswered(true);
 	}
 
 	@Override
@@ -148,9 +149,41 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	private void clearFields() {
-		name_bot.setText("Name botanisch");
-		name_ger.setText("Name deutsch");
+		setTextField();
 		input_bot.setText("");
 		input_ger.setText("");
+		input_bot.setHint("botanisch");
+		input_ger.setHint("deutsch");
+
+	}
+	private void checkOkj(QuestionObj obj){
+		if (obj != null) {
+			System.out.println(obj.getPic_link());
+			InputStream is = getClass().getResourceAsStream(
+					"/res/drawable-hdpi/" + obj.getPic_link());
+			plant.setImageDrawable(Drawable.createFromStream(is, ""));
+			
+			clearFields();
+		}
+	}
+	private void setTextField(){
+		boolean lastRes = gm.getLastResult_bot();
+		
+		if(gm.isAnswered() && lastRes){
+			name_bot.setText("letzter Versuch richtig");
+		}else if(gm.isAnswered() && !lastRes){
+			name_bot.setText("letzter Versuch falsch");
+		}else{
+			name_bot.setText("");
+		}
+		
+		lastRes = gm.getLastResult_ger();
+		if(gm.isAnswered() && lastRes){
+			name_ger.setText("letzter Versuch richtig");
+		}else if(gm.isAnswered() && !lastRes){
+			name_ger.setText("letzter Versuch falsch");
+		}else{
+			name_ger.setText("");
+		}
 	}
 }

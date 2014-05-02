@@ -1077,16 +1077,76 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int alnus_incana=0x7f020057;
-        public static final int betula_nigra=0x7f020058;
-        public static final int betula_pendula=0x7f020059;
-        public static final int betula_utilis=0x7f02005a;
-        public static final int ic_launcher=0x7f02005b;
-        public static final int pinus_sylvestris=0x7f02005c;
-        public static final int populus_tremula=0x7f02005d;
-        public static final int robinia_pseudoacacia=0x7f02005e;
-        public static final int salix_caprea=0x7f02005f;
-        public static final int sorbus_aucuparia=0x7f020060;
+        public static final int abies_alba=0x7f020057;
+        public static final int acer_campestre=0x7f020058;
+        public static final int acer_monspessulanum=0x7f020059;
+        public static final int acer_negundo=0x7f02005a;
+        public static final int acer_saccharinum=0x7f02005b;
+        public static final int aesculus_x_carnea=0x7f02005c;
+        public static final int alnus_glutinosa=0x7f02005d;
+        public static final int alnus_incana=0x7f02005e;
+        public static final int betula_nigra=0x7f02005f;
+        public static final int betula_pendula=0x7f020060;
+        public static final int betula_utilis=0x7f020061;
+        public static final int castanea_sativa=0x7f020062;
+        public static final int cedrus_libani=0x7f020063;
+        public static final int cornus_mas=0x7f020064;
+        public static final int cornus_sanguinea=0x7f020065;
+        public static final int corylus_avellana=0x7f020066;
+        public static final int corylus_colurna=0x7f020067;
+        public static final int crataegus_laevigata=0x7f020068;
+        public static final int crataegus_x_lavallei_carrierei=0x7f020069;
+        public static final int crategus_monogyna=0x7f02006a;
+        public static final int euonymus_europaeus=0x7f02006b;
+        public static final int fagus_sylvatica=0x7f02006c;
+        public static final int fraxinus_excelsior=0x7f02006d;
+        public static final int fraxinus_ornus=0x7f02006e;
+        public static final int ic_launcher=0x7f02006f;
+        public static final int ilex_aquifolium=0x7f020070;
+        public static final int index=0x7f020071;
+        public static final int index10=0x7f020072;
+        public static final int index2=0x7f020073;
+        public static final int index3=0x7f020074;
+        public static final int index4=0x7f020075;
+        public static final int index5=0x7f020076;
+        public static final int index6=0x7f020077;
+        public static final int index7=0x7f020078;
+        public static final int index9=0x7f020079;
+        public static final int juniperus_communis=0x7f02007a;
+        public static final int laburnum_anagyroides=0x7f02007b;
+        public static final int larix_decidua=0x7f02007c;
+        public static final int larix_kaempferi=0x7f02007d;
+        public static final int ligustrum_vulgare=0x7f02007e;
+        public static final int liquidambar_styraciflua=0x7f02007f;
+        public static final int logo=0x7f020080;
+        public static final int lonicera_xylosteum=0x7f020081;
+        public static final int mespilus_germanica=0x7f020082;
+        public static final int metasequoia_glyptostroboides=0x7f020083;
+        public static final int picea_abies=0x7f020084;
+        public static final int pinus_mugo=0x7f020085;
+        public static final int pinus_nigra=0x7f020086;
+        public static final int pinus_sylvestris=0x7f020087;
+        public static final int populus_nigra=0x7f020088;
+        public static final int populus_tremula=0x7f020089;
+        public static final int prunus_padus=0x7f02008a;
+        public static final int quercus_cerris=0x7f02008b;
+        public static final int quercus_frainetto=0x7f02008c;
+        public static final int robinia_pseudoacacia=0x7f02008d;
+        public static final int salix_alba=0x7f02008e;
+        public static final int salix_caprea=0x7f02008f;
+        public static final int salix_purpurea=0x7f020090;
+        public static final int salix_viminalis=0x7f020091;
+        public static final int sambucus_nigra=0x7f020092;
+        public static final int sambucus_racemosa=0x7f020093;
+        public static final int sorbus_aria=0x7f020094;
+        public static final int sorbus_aucuparia=0x7f020095;
+        public static final int sorbus_intermedia=0x7f020096;
+        public static final int taxodium_distichum=0x7f020097;
+        public static final int taxus_baccata=0x7f020098;
+        public static final int tilia_cordata=0x7f020099;
+        public static final int ulmus_glabra=0x7f02009a;
+        public static final int viburnum_lantana=0x7f02009b;
+        public static final int viburnum_opulus=0x7f02009c;
     }
     public static final class id {
         public static final int Edit_ger=0x7f060040;
@@ -1101,7 +1161,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_settings=0x7f06004a;
+        public static final int action_settings=0x7f06004d;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int back=0x7f060045;
@@ -1133,6 +1193,8 @@ containing a value of this type.
         public static final int never=0x7f060009;
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
+        public static final int nr_to_fill=0x7f06004c;
+        public static final int number=0x7f06004b;
         public static final int plantView=0x7f06003d;
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
@@ -1152,7 +1214,8 @@ containing a value of this type.
         public static final int showHome=0x7f060004;
         public static final int showTitle=0x7f060006;
         public static final int split_action_bar=0x7f06001e;
-        public static final int start=0x7f060049;
+        public static final int startText=0x7f060049;
+        public static final int start_game=0x7f06004a;
         public static final int submit_area=0x7f060039;
         public static final int tabMode=0x7f060002;
         public static final int tableRow1=0x7f06003e;
@@ -1216,11 +1279,14 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_main=0x7f030018;
-        public static final int fragment_main=0x7f030019;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
+        public static final int activity_start=0x7f030019;
+        public static final int fragment_main=0x7f03001a;
+        public static final int fragment_start=0x7f03001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
     }
     public static final class menu {
         public static final int main=0x7f0d0000;
+        public static final int start=0x7f0d0001;
     }
     public static final class raw {
         public static final int applause=0x7f050000;
@@ -1271,6 +1337,7 @@ containing a value of this type.
         public static final int action_settings=0x7f0b000f;
         public static final int app_name=0x7f0b000d;
         public static final int hello_world=0x7f0b000e;
+        public static final int title_activity_start=0x7f0b0010;
     }
     public static final class style {
         /** 

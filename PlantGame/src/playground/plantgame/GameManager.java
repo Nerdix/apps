@@ -37,13 +37,19 @@ public class GameManager {
 		index = 0;
 		return questions.get(0);
 	}
+
 	public QuestionObj startRandomGame(int nrofQ) {
 		questions = new ArrayList<QuestionObj>(nrofQ);
 		size = nrofQ;
-		
+		int count = 0;
 		for (String[] s : data) {
-			QuestionObj tmp = new QuestionObj(s[0], s[1]);
-			questions.add(tmp);
+			if (count == nrofQ) {
+				break;
+			} else {
+				QuestionObj tmp = new QuestionObj(s[0], s[1]);
+				questions.add(tmp);
+				count++;
+			}
 		}
 		Collections.shuffle(questions);
 		index = 0;
@@ -55,24 +61,24 @@ public class GameManager {
 	}
 
 	public QuestionObj getNextQuestion() {
-		
-		if(index<size-1){
-			index ++;
-		}else{
-			index= 0;
+
+		if (index < size - 1) {
+			index++;
+		} else {
+			index = 0;
 			Collections.shuffle(questions);
 		}
-		System.out.println(""+index);
+		System.out.println("" + index);
 		return questions.get(index);
 	}
 
 	public QuestionObj getPrefQuestion() {
-		if(index==0){
-			index = size-1;
-		}else{
+		if (index == 0) {
+			index = size - 1;
+		} else {
 			index--;
 		}
-		
+
 		return questions.get(index);
 	}
 
@@ -91,7 +97,6 @@ public class GameManager {
 			return questions.get(index).getName_bot();
 		}
 	}
-
 
 	public ArrayList<String[]> initData() {
 		ArrayList<String[]> myList = null;
@@ -119,10 +124,28 @@ public class GameManager {
 		}
 		return myList;
 	}
-	public void setAnswered(boolean value){
+
+	public void setAnswered(boolean value) {
 		questions.get(index).setAnswered(value);
 	}
-	public boolean isAnswered(){
+
+	public boolean isAnswered() {
 		return questions.get(index).isAnswered();
+	}
+
+	public void setLastResult_ger(boolean value) {
+		questions.get(index).setLast_result_ger(value);
+	}
+
+	public void setLastResult_bot(boolean value) {
+		questions.get(index).setLast_result_bot(value);
+	}
+
+	public boolean getLastResult_bot() {
+		return questions.get(index).isLast_result_bot();
+	}
+
+	public boolean getLastResult_ger() {
+		return questions.get(index).isLast_result_ger();
 	}
 }
