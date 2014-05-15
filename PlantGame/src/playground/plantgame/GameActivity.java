@@ -3,35 +3,34 @@ package playground.plantgame;
 import java.io.InputStream;
 
 import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
+import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewSwitcher.ViewFactory;
 
 
 public class GameActivity extends ActionBarActivity {
 
 	private GameManager gm;
 
-	Button back;
-	Button forward;
+	ImageButton back;
+	ImageButton forward;
 	TextView name_bot;
 	TextView name_ger;
-	ImageView plant;
 	EditText input_ger;
 	EditText input_bot;
+	ImageSwitcher imageSwitch;
 	int sound_false;
 	int sound_pos;
 	 SoundPool soundPool;
@@ -46,15 +45,31 @@ public class GameActivity extends ActionBarActivity {
 		sound_pos = soundPool.load(this, R.raw.applause, 1);
 		gm = new GameManager(ctx);
 
-		forward = (Button) findViewById(R.id.forward);
-		back = (Button) findViewById(R.id.back);
+		forward = (ImageButton) findViewById(R.id.forward);
+		back = (ImageButton) findViewById(R.id.back);
 		name_bot = (TextView) findViewById(R.id.name_bot);
 		name_ger = (TextView) findViewById(R.id.name_ger);
 		input_bot = (EditText) findViewById(R.id.editText_bot);
 		input_ger = (EditText) findViewById(R.id.Edit_ger);
-		plant = (ImageView) findViewById(R.id.plantView);
+		imageSwitch = (ImageSwitcher)findViewById(R.id.imageSwitcher);
+		imageSwitch.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
+		imageSwitch.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_out));
+		imageSwitch.setDrawingCacheEnabled(false);
+		imageSwitch.setFactory(new ViewFactory() {
+
+			   @Override
+			   public View makeView() {
+			      ImageView myView = new ImageView(getApplicationContext());
+			      myView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+			      myView.setLayoutParams(new ImageSwitcher.LayoutParams(LayoutParams.
+			      MATCH_PARENT,LayoutParams.MATCH_PARENT));
+			      return myView;
+			       }
+			   });
+		
 		
 		Intent intent = getIntent();
+		
 		int nr = intent.getIntExtra("nr_plants", 0);
 		
 		QuestionObj obj = gm.startRandomGame(nr);
@@ -88,7 +103,7 @@ public class GameActivity extends ActionBarActivity {
 			
 		} else {
 			// botanic incorrect
-			name_bot.setText("FALSCH! " + res_bot);
+			name_bot.setText(res_bot);
 			gm.setLastResult_bot(false);
 		}
 		if (res_ger.equals("")) {
@@ -97,7 +112,7 @@ public class GameActivity extends ActionBarActivity {
 			gm.setLastResult_ger(true);
 		} else {
 			//german incorrect
-			name_ger.setText("FALSCH! " + res_ger);
+			name_ger.setText(res_ger);
 			gm.setLastResult_ger(false);
 		}
 		//do sound
@@ -110,43 +125,6 @@ public class GameActivity extends ActionBarActivity {
 		gm.setAnswered(true);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
-			return rootView;
-		}
-
-	}
 
 	private void clearFields() {
 		setTextField();
@@ -161,8 +139,7 @@ public class GameActivity extends ActionBarActivity {
 			System.out.println(obj.getPic_link());
 			InputStream is = getClass().getResourceAsStream(
 					"/res/drawable-hdpi/" + obj.getPic_link());
-			plant.setImageDrawable(Drawable.createFromStream(is, ""));
-			
+			imageSwitch.setImageDrawable(Drawable.createFromStream(is, ""));
 			clearFields();
 		}
 	}
@@ -170,18 +147,21 @@ public class GameActivity extends ActionBarActivity {
 		boolean lastRes = gm.getLastResult_bot();
 		
 		if(gm.isAnswered() && lastRes){
-			name_bot.setText("letzter Versuch richtig");
+			name_bot.setText("Vorher richtig");
+
+
 		}else if(gm.isAnswered() && !lastRes){
-			name_bot.setText("letzter Versuch falsch");
+			name_bot.setText("Vorher falsch");
+
 		}else{
 			name_bot.setText("");
 		}
 		
 		lastRes = gm.getLastResult_ger();
 		if(gm.isAnswered() && lastRes){
-			name_ger.setText("letzter Versuch richtig");
+			name_ger.setText("Vorher richtig");
 		}else if(gm.isAnswered() && !lastRes){
-			name_ger.setText("letzter Versuch falsch");
+			name_ger.setText("Vorher falsch");
 		}else{
 			name_ger.setText("");
 		}
